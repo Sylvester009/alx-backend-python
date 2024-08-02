@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 
-"""This is a script for adding two floats in a function"""
+"""Script that returns the sum of a and
+b as a float.
+"""
 
-def add(a: float, b:float) -> float:
+
+def add(a: float, b: float) -> float:
+    """return the sum of a and b.
+    """
     return a + b
