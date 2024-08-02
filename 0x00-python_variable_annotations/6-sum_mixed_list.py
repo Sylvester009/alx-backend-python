@@ -17,4 +17,4 @@ def sum_mixed_list(mxd_list: List[Union[int, float]]) -> float:
         if isinstance(idx, int) or isinstance(idx, float):
             max_sum += idx
 
-    return mxd_sum
+    return max_sum
