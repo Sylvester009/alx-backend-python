@@ -33,26 +33,6 @@ def get_json(url):
     return response.json()
 
 
-"""def memoize(func):
-    Memoize the result of a function call for given arguments.
-
-    Args:
-        func (callable): The function to be memoized.
-
-    Returns:
-        A wrapped function that caches and returns the result of
-        calling the original function with the same arguments.
-   
-    cache = {}
-
-    def wrapped(*args, **kwargs):
-        key = str(args) + str(kwargs)
-        if key not in cache:
-            cache[key] = func(*args, **kwargs)
-        return cache[key]
-    return wrapped"""
-
-
 class TestAccessNestedMap(unittest.TestCase):
     """Test class for the access_nested_map function."""
 
@@ -88,38 +68,10 @@ class TestGetJson(unittest.TestCase):
         """Test that get_json returns the expected JSON data."""
         config = {'return_value.json.return_value': test_payload}
         patcher = patch('requests.get', **config)
-        p_mock = patcher.start()
+        mock = patcher.start()
         self.assertEqual(get_json(test_url), test_payload)
-        p_mock.assert_called_once()
+        mock.assert_called_once()
         patcher.stop()
-
-
-"""class TestMemoize(unittest.TestCase):
-    Test class for the memoize decorator.
-
-    def test_memoize(self):
-        Test memoization of a function call.
-
-        Ensure that when calling a_property twice, the correct result
-        is returned but a_method is only called once, as verified by
-        assert_called_once.
-        
-
-        class TestClass:
-            Test class for wrapping a method with memoize.
-
-            def a_method(self):
-                return 42
-
-            @memoize
-            def a_property(self):
-                return self.a_method()
-
-        with patch.object(TestClass, 'a_method') as mock:
-            test_class = TestClass()
-            test_class.a_property()
-            test_class.a_property()
-            mock.assert_called_once()"""
 
 
 if __name__ == '__main__':
